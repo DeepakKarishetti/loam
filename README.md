@@ -1,54 +1,46 @@
-# loam_velodyne
+#loam
 
-![Screenshot](/capture.bmp)
-Sample map built from [nsh_indoor_outdoor.bag](http://www.frc.ri.cmu.edu/~jizhang03/Datasets/nsh_indoor_outdoor.bag) (opened with [ccViewer](http://www.danielgm.net/cc/))
+Lidar Odometry And Mapping http://wiki.ros.org/loam_velodyne
+```
+This version of code has been adopted from https://github.com/laboshinl/loam_velodyne
 
-:white_check_mark: Tested with ROS Indigo and Velodyne VLP16. [(Screencast)](https://youtu.be/o1cLXY-Es54)
+ - The original version of this code in the above link is set to work with velodyne lidar
+ - This code in this repo has been modified to be used with Ouster OS_1 lidar, which takes care of the 
+ lidar resolution, fov and the frame of reference
+```
 
 All sources were taken from [ROS documentation](http://docs.ros.org/indigo/api/loam_velodyne/html/files.html)
-
 Ask questions [here](https://github.com/laboshinl/loam_velodyne/issues/3).
 
 ## How to build with catkin
 
 ```
 $ cd ~/catkin_ws/src/
-$ git clone https://github.com/laboshinl/loam_velodyne.git
+$ https://github.com/DeepakKarishetti/loam
 $ cd ~/catkin_ws
 $ catkin_make -DCMAKE_BUILD_TYPE=Release 
 $ source ~/catkin_ws/devel/setup.bash
 ```
 
-## Running
+## Launch
 
 ```
-roslaunch loam_velodyne loam_velodyne.launch
+roslaunch loam_velodyne loam_ouster.launch
 ```
 
-In second terminal play sample velodyne data from [VLP16 rosbag](http://www.frc.ri.cmu.edu/~jizhang03/Datasets/):
-```
-rosbag play ~/Downloads/velodyne.bag 
-```
+In another terminal play a rosbag file containing the appropriate topic name mentioned in the launch file
+Or a lidar can be used in real time to get the range measurements
 
-Or read from velodyne [VLP16 sample pcap](https://midas3.kitware.com/midas/folder/12979):
 ```
-roslaunch velodyne_pointcloud VLP16_points.launch pcap:="$HOME/Downloads/velodyne.pcap"
+rosbag play <bag_file_name> 
 ```
 
-## Troubleshooting
+In this example implementation a rosbag file is used and the topic used is ***/os1_cloud_node/points ***
 
-### `multiScanRegistration` crashes right after playing bag file
+The registered point cloud is published on the topic name ***/laser_cloud_surround***
 
-Issues [#71](https://github.com/laboshinl/loam_velodyne/issues/71) and
-[#7](https://github.com/laboshinl/loam_velodyne/issues/7) address this
-problem. The current known solution is to build the same version of PCL that
-you have on your system from source, and set the `CMAKE_PREFIX_PATH`
-accordingly so that catkin can find it. See [this
-issue](https://github.com/laboshinl/loam_velodyne/issues/71#issuecomment-416024816)
-for more details.
+This can be recorded into a rosbag and can be converted into a pcd format using ***pcl_ros***
+
+The pcd files can be visualized using ***pcl_viewer***
 
 
----
-[Quantifying Aerial LiDAR Accuracy of LOAM for Civil Engineering Applications.](https://ceen.et.byu.edu/sites/default/files/snrprojects/wolfe_derek.pdf) Derek Anthony Wolfe
-
-[ROS & Loam_velodyne](https://ishiguro440.wordpress.com/2016/04/05/%E5%82%99%E5%BF%98%E9%8C%B2%E3%80%80ros-loam_velodyne/) 
