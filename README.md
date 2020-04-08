@@ -1,8 +1,8 @@
-#loam
+#loam - readme
 
-Lidar Odometry And Mapping http://wiki.ros.org/loam_velodyne
+## Lidar Odometry And Mapping [source](http://wiki.ros.org/loam_velodyne)
 ```
-This version of code has been adopted from [here](https://github.com/laboshinl/loam_velodyne)
+This version of the code has been adopted from https://github.com/laboshinl/loam_velodyne
 
  - The original version of this code in the above link is set to work with velodyne lidar
  - This code in this repo has been modified to be used with Ouster OS_1 lidar, which takes care of the 
@@ -35,12 +35,10 @@ Or a lidar can be used in real time to get the range measurements
 rosbag play <bag_file_name> 
 ```
 
-In this example implementation a rosbag file is used and the topic used is ***/os1_cloud_node/points***
-
-The registered point cloud is published on the topic name ***/laser_cloud_surround***
-
-This can be recorded into a rosbag and can be converted into a pcd format using ***pcl_ros***
-
-The pcd files can be visualized using ***pcl_viewer***
-
+```
+ - In this example implementation a rosbag file is used and the topic used is ***/os1_cloud_node/points***
+ - The registered point cloud is published on the topic name ***/laser_cloud_surround***
+ - This can be recorded into a rosbag and can be converted into a pcd format using ***pcl_ros***
+ - The pcd files can be visualized using ***pcl_viewer***
+```
 
