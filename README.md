@@ -6,6 +6,9 @@ This version of the code has been adopted from [here](https://github.com/laboshi
  - This code in this repo has been modified to be used with Ouster OS_1 lidar, which takes care of the 
  lidar resolution, fov and the frame of reference
 ```
+![Screenshot](/images/loam_map.png)
+
+:white_check_mark: Tested on Ubuntu 16.04 with ROS Kinetic and Ouster OS1 16. [(Youtube)](https://www.youtube.com/watch?v=Z7VJuANyxwA)
 
 All sources were taken from [ROS documentation](http://docs.ros.org/indigo/api/loam_velodyne/html/files.html)
 Ask questions [here](https://github.com/laboshinl/loam_velodyne/issues/3).
