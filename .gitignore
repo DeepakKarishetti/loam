@@ -1,0 +1,2 @@
+# prevent uploading large files
+bag_files/*
